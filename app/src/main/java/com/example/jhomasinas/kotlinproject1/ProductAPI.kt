@@ -25,7 +25,7 @@ interface ProductAPI {
                                ) : Call<Product>
 
     companion object {
-        val BASE_URL = "http://192.168.1.95/mobilecom/"
+        val BASE_URL = "http://192.168.15.74/mobilecom/"
         fun create(): ProductAPI {
             val retrofit = Retrofit.Builder()
                     .baseUrl(BASE_URL)

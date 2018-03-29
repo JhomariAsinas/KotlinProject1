@@ -16,4 +16,7 @@ class  Product {
     @SerializedName("product_price")
     var prodprice : String? = null
 
+    @SerializedName("product_image")
+    var prodimage : String? = null
+
 }

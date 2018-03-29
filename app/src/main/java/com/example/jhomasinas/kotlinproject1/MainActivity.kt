@@ -67,12 +67,15 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
                 Toast.makeText(this,"Settings Selected",Toast.LENGTH_SHORT ).show()
                 return true
             }
-            else->return super.onOptionsItemSelected(item)
+            else-> return super.onOptionsItemSelected(item)
         }
     }
 
     override fun onClickProduct(product: Product) {
-        btnLoad.text = product.prodname
+        val intent = Intent(this@MainActivity,ProductDetail::class.java)
+        val img = product.prodimage.toString()
+        intent.putExtra("Image",img)
+        startActivity(intent)
     }
 
 
