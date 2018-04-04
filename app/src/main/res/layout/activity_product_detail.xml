@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jhomasinas.kotlinproject1.ProductDetail">
+    tools:context="com.example.jhomasinas.kotlinproject1.ProductDetail"
+    xmlns:autofit="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/textView"
@@ -17,21 +17,165 @@
         android:textAlignment="center"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/prodImage"
+        android:layout_toEndOf="@+id/textView3"
+        android:text="Product Name"
+        android:textAlignment="center"
+        android:textStyle="bold" />
+
+    <me.grantland.widget.AutofitTextView
+        android:id="@+id/prodView"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView7"
+        android:layout_alignEnd="@+id/categoryView"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_alignTop="@+id/prodImage"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:maxLines="4"
+        android:text="The Sample Name of the Universe"
+        android:gravity="center_vertical"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        autofit:minTextSize="15sp"/>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView5"
+        android:layout_alignStart="@+id/textView5"
+        android:layout_marginBottom="5dp"
+        android:text="Category:"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/categoryView"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView7"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_alignEnd="@+id/view"
+        android:text="Gadgets"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginBottom="5dp"
+        android:text="Quantity:"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/itemView"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView5"
+        android:layout_alignBottom="@+id/textView5"
+        android:layout_alignStart="@+id/categoryView"
+        android:text="10 Items Available"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/prodImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="Price:"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/priceView"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_below="@+id/textView5"
+        android:text="$1.00"
+        android:textAlignment="center"
+        android:textColor="@color/colorAccent"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+
     <ImageView
         android:id="@+id/prodImage"
         android:layout_width="150dp"
-        android:layout_height="200dp"
+        android:layout_height="190dp"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView"
         android:layout_marginStart="8dp"
         android:layout_marginTop="5dp"
         android:src="@mipmap/ic_launcher" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView3"
+        android:background="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/prodImage"
+        android:layout_centerVertical="true"
+        android:text="Description"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/descripView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView2"
+        android:maxLines="4"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:text="The sample data must have a characteristics for distribution of product in the customer"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_below="@+id/descripView"
+        android:layout_marginTop="28dp"
+        android:background="@color/colorPrimaryDark" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:text="ADD to CART"
+        android:text="ADD TO CART"
         android:textAllCaps="false"
+        android:id="@+id/btnAddtoCart"
         android:background="@color/colorAccent"/>
 </RelativeLayout>

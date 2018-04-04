@@ -11,4 +11,9 @@ class ProductResponse {
 
     @SerializedName("product")
     var product2: ArrayList<Product>? = null
+
+    @SerializedName("response")
+    var response: Boolean? = null
+
+    
 }

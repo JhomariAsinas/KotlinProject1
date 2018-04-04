@@ -4,8 +4,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
+import com.squareup.picasso.Picasso
 
 /**
  * Created by JhomAsinas on 3/21/2018.
@@ -24,9 +27,11 @@ class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : RecycleAda
         val product: Product = userlist!![position]
 
         holder?.prodName?.text  = product.prodname
-        holder?.prodCode?.text  = product.prodcode
-        holder?.prodDes?.text   = product.prodescrip
-        holder?.prodPrice?.text = "$"+product.prodprice+".00"
+        Picasso.get()
+                .load("http://192.168.15.74/e-commerce/assets/image/"+product.prodimage)
+                .resize(450, 450)
+                .centerCrop()
+                .into(holder?.prodImage)
 
         holder?.product_container?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
@@ -42,10 +47,8 @@ class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : RecycleAda
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val prodName  = itemView.findViewById<View>(R.id.prodName)  as TextView
-        val prodCode  = itemView.findViewById<View>(R.id.prodCode)  as TextView
-        val prodDes   = itemView.findViewById<View>(R.id.prodDes)   as TextView
-        val prodPrice = itemView.findViewById<View>(R.id.prodPrice) as TextView
-        val product_container = itemView.findViewById<LinearLayout>(R.id.product_container)
+        val prodImage = itemView.findViewById<View>(R.id.prodImgView) as ImageView
+        val product_container = itemView.findViewById<View>(R.id.containerlayout) as RelativeLayout
     }
 
 }

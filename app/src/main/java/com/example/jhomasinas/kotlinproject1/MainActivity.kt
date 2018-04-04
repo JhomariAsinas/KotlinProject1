@@ -2,8 +2,11 @@ package com.example.jhomasinas.kotlinproject1
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
+import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
@@ -12,21 +15,23 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
+class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate{
+
     private var recyclerView2 : RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerView2 = findViewById<View>(R.id.recyclerView) as RecyclerView
-        recyclerView2!!.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL , false)
-
-        btnLoad.setOnClickListener{
+        recyclerView2!!.layoutManager = GridLayoutManager(this@MainActivity,2)
+        getProduct()
+        swipeLayout.setOnRefreshListener {
             getProduct()
         }
     }
@@ -45,6 +50,7 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
                  var product: ArrayList<Product> = response!!.body()!!.product2!!
                  val adapter = RecycleAdapter(product, this@MainActivity)
                  recyclerView2!!.adapter = adapter
+                 swipeLayout.isRefreshing = false
              }
 
          })
@@ -59,9 +65,8 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.addItem -> {
-                val intent = Intent(this,AddProduct::class.java)
-                startActivity(intent)
                 return true
+
             }
             R.id.Settings ->{
                 Toast.makeText(this,"Settings Selected",Toast.LENGTH_SHORT ).show()
@@ -73,10 +78,18 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
 
     override fun onClickProduct(product: Product) {
         val intent = Intent(this@MainActivity,ProductDetail::class.java)
-        val img = product.prodimage.toString()
-        intent.putExtra("Image",img)
+        intent.putExtra("Image",product.prodimage)
+        intent.putExtra("Name",product.prodname)
+        intent.putExtra("Description",product.prodescrip)
+        intent.putExtra("Items",product.proditems)
+        intent.putExtra("Price",product.prodprice)
+        intent.putExtra("Code",product.prodcode)
+        intent.putExtra("Category",product.prodcat)
         startActivity(intent)
     }
 
 
+
+
 }
+

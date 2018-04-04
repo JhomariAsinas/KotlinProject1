@@ -3,6 +3,7 @@ package com.example.jhomasinas.kotlinproject1
 
 
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Field
@@ -16,13 +17,11 @@ interface ProductAPI {
     @GET("admin/showSelprod/All")
     abstract fun getProduct(): Call<ProductResponse>
 
-    @POST("admin/insertProd")
     @FormUrlEncoded
-    abstract fun insertProduct(@Field("prodName") prodName: String,
-                               @Field("prodDes")  prodDes:  String,
-                               @Field("price")    price:    Int,
-                               @Field("quantity") prodNum:  Int
-                               ) : Call<Product>
+    @POST("admin/addtoCart")
+    abstract fun addtoCart(@Field("code")code: String,
+                           @Field("items")items: Int): Call<ProductResponse>
+
 
     companion object {
         val BASE_URL = "http://192.168.15.74/mobilecom/"
