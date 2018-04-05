@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,12 +20,14 @@
         </activity>
         <activity
             android:name=".AddProduct"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".Activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".Activity.MainActivity" />
         </activity>
-        <activity android:name=".ProductDetail"></activity>
+        <activity android:name=".Activity.ProductDetail" />
+        <activity android:name=".Activity.CartActivity" />
+        <activity android:name=".Activity.TransactActivity"></activity>
     </application>
 
 </manifest>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.jhomasinas.kotlinproject1.ProductDetail"
+    tools:context="com.example.jhomasinas.kotlinproject1.Activity.ProductDetail"
     xmlns:autofit="http://schemas.android.com/apk/res-auto">
 
     <TextView

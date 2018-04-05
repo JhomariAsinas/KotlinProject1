@@ -1,0 +1,167 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jhomasinas.kotlinproject1.Fragment.BlankFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To process your items you must fill the customer information"
+        android:textAlignment="center"
+        android:padding="3dp"
+        android:textSize="15sp"
+        android:id="@+id/textView14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView14"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:text="Choose Mode of Payment:"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:id="@+id/textView15" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/textView15"
+        android:layout_marginStart="33dp"
+        android:layout_marginTop="11dp"
+        android:text="Cash on Delivery" />
+
+    <RadioButton
+        android:id="@+id/radioButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/radioButton"
+        android:layout_alignBottom="@+id/radioButton"
+        android:layout_marginStart="29dp"
+        android:layout_toEndOf="@+id/textView15"
+        android:text="Remittance" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_below="@+id/radioButton"
+        android:layout_marginTop="24dp"
+        android:text="Remittance Payment Information"
+        android:textSize="14sp"
+        android:id="@+id/textView16"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="157dp"
+        android:layout_height="3dp"
+        android:layout_alignBottom="@+id/textView16"
+        android:layout_alignParentEnd="true"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="7dp"
+        android:id="@+id/view4" />
+
+    <View
+        android:layout_width="13dp"
+        android:layout_height="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/view4"
+        android:layout_marginBottom="1dp"
+        android:background="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView16"
+        android:layout_below="@+id/view4"
+        android:layout_marginTop="17dp"
+        android:text="Address"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/radioButton"
+        android:layout_below="@+id/textView20"
+        android:layout_marginTop="13dp"
+        android:text="UNIT 101 Ermin Garcia St. Cubao, Quezon City"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView20"
+        android:layout_centerVertical="true"
+        android:text="Author Person"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView21"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:text="Mr. Jhomari Asinas
+Sales Head"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView22"
+        android:layout_below="@+id/textView23"
+        android:text="Contact No."
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView25"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:text="09210255377"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView26"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:background="@color/colorPrimaryDark"
+        android:id="@+id/view5" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp"
+        android:background="@color/colorAccent"
+        android:padding="10dp"
+        android:text="Proceed to Customer Information"
+        android:textAllCaps="false" />
+
+</RelativeLayout>

@@ -1,22 +1,24 @@
-package com.example.jhomasinas.kotlinproject1
+package com.example.jhomasinas.kotlinproject1.Adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.example.jhomasinas.kotlinproject1.Model.Product
+import com.example.jhomasinas.kotlinproject1.R
 import com.squareup.picasso.Picasso
 
 /**
  * Created by JhomAsinas on 3/21/2018.
  */
-class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : RecycleAdapter.Delegate) : RecyclerView.Adapter<RecycleAdapter.ViewHolder>() {
+class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : Delegate) : RecyclerView.Adapter<RecycleAdapter.ViewHolder>() {
 
     interface Delegate {
         fun onClickProduct(product: Product)
+
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +30,7 @@ class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : RecycleAda
 
         holder?.prodName?.text  = product.prodname
         Picasso.get()
-                .load("http://192.168.15.74/e-commerce/assets/image/"+product.prodimage)
+                .load("http://192.168.43.51/e-commerce/assets/image/"+product.prodimage)
                 .resize(450, 450)
                 .centerCrop()
                 .into(holder?.prodImage)
@@ -46,8 +48,8 @@ class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : RecycleAda
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        val prodName  = itemView.findViewById<View>(R.id.prodName)  as TextView
-        val prodImage = itemView.findViewById<View>(R.id.prodImgView) as ImageView
+        val prodName          = itemView.findViewById<View>(R.id.prodName)        as TextView
+        val prodImage         = itemView.findViewById<View>(R.id.prodImgView)     as ImageView
         val product_container = itemView.findViewById<View>(R.id.containerlayout) as RelativeLayout
     }
 

@@ -1,27 +1,27 @@
-package com.example.jhomasinas.kotlinproject1
+package com.example.jhomasinas.kotlinproject1.Activity
 
 
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.Toast
+import com.example.jhomasinas.kotlinproject1.*
+import com.example.jhomasinas.kotlinproject1.Adapter.RecycleAdapter
+import com.example.jhomasinas.kotlinproject1.Config.ProductAPI
+import com.example.jhomasinas.kotlinproject1.Config.ProductResponse
+import com.example.jhomasinas.kotlinproject1.Model.Product
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.*
 import retrofit2.Call
 import retrofit2.Callback
 import kotlin.collections.ArrayList
 
 
-class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate{
+class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate {
 
     private var recyclerView2 : RecyclerView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -65,6 +65,8 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate{
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.addItem -> {
+                val intent = Intent(applicationContext, CartActivity::class.java)
+                startActivity(intent)
                 return true
 
             }
@@ -77,7 +79,7 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate{
     }
 
     override fun onClickProduct(product: Product) {
-        val intent = Intent(this@MainActivity,ProductDetail::class.java)
+        val intent = Intent(this@MainActivity, ProductDetail::class.java)
         intent.putExtra("Image",product.prodimage)
         intent.putExtra("Name",product.prodname)
         intent.putExtra("Description",product.prodescrip)
@@ -86,6 +88,7 @@ class MainActivity : AppCompatActivity(), RecycleAdapter.Delegate{
         intent.putExtra("Code",product.prodcode)
         intent.putExtra("Category",product.prodcat)
         startActivity(intent)
+
     }
 
 

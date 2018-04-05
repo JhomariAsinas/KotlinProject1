@@ -1,4 +1,4 @@
-package com.example.jhomasinas.kotlinproject1
+package com.example.jhomasinas.kotlinproject1.Activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -7,9 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
+import com.example.jhomasinas.kotlinproject1.Config.ProductAPI
+import com.example.jhomasinas.kotlinproject1.Config.ProductResponse
+import com.example.jhomasinas.kotlinproject1.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import org.jetbrains.anko.*
 import retrofit2.Call
@@ -39,7 +40,7 @@ class ProductDetail : AppCompatActivity() {
     }
 
     fun loadImage(){
-        val url: String = "http://192.168.15.74/e-commerce/assets/image/$prodimg"
+        val url: String = "http://192.168.43.51/e-commerce/assets/image/$prodimg"
         val imageView: ImageView = findViewById(R.id.prodImage)
         Picasso.get()
                 .load(url)
