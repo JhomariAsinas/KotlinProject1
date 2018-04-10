@@ -1,5 +1,6 @@
 package com.example.jhomasinas.kotlinproject1.Activity
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.app.AlertDialog
@@ -10,7 +11,11 @@ import android.widget.ImageView
 import com.example.jhomasinas.kotlinproject1.Config.ProductAPI
 import com.example.jhomasinas.kotlinproject1.Config.ProductResponse
 import com.example.jhomasinas.kotlinproject1.R
+import com.example.jhomasinas.kotlinproject1.SharedPref
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_product_detail.*
 import org.jetbrains.anko.*
 import retrofit2.Call
@@ -18,12 +23,32 @@ import retrofit2.Callback
 
 
 class ProductDetail : AppCompatActivity() {
+    val productApiserve by lazy {
+        ProductAPI.create()
+    }
+
+    var disposable : Disposable? = null
+
     var prodimg: String? = null
     var code: String? = null
     var items2: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_detail)
+        initViews()
+        loadImage()
+        btnAddtoCart.setOnClickListener {
+           if(!SharedPref.getmInstance(this@ProductDetail).isUserData){
+               createAccountdialog()
+           }else{
+               createDialog()
+           }
+        }
+
+    }
+
+    fun initViews(){
         code = intent.getStringExtra("Code")
         prodimg = intent.getStringExtra("Image")
         prodView.text = intent.getStringExtra("Name")
@@ -32,15 +57,10 @@ class ProductDetail : AppCompatActivity() {
         priceView.text = intent.getStringExtra("Price")
         descripView.text = intent.getStringExtra("Description")
         items2 = intent.getStringExtra("Items").toInt()
-        loadImage()
-        btnAddtoCart.setOnClickListener {
-           createDialog()
-        }
-
     }
 
     fun loadImage(){
-        val url: String = "http://192.168.43.51/e-commerce/assets/image/$prodimg"
+        val url: String = "http://192.168.1.101/e-commerce/assets/image/$prodimg"
         val imageView: ImageView = findViewById(R.id.prodImage)
         Picasso.get()
                 .load(url)
@@ -49,24 +69,14 @@ class ProductDetail : AppCompatActivity() {
                 .into(imageView)
     }
 
-    fun addtoCart(inputCode: String?,inputItems: Int){
-        val productService = ProductAPI.create()
-        val call = productService.addtoCart(inputCode!!,inputItems)
-        call.enqueue(object : Callback<ProductResponse> {
-            override fun onFailure(call: Call<ProductResponse>?, t: Throwable?) {
-                toast("Network Error")
-            }
-
-            override fun onResponse(call: Call<ProductResponse>?, response:  retrofit2.Response<ProductResponse>?) {
-                val res: Boolean = response!!.body()!!.response!!
-                if(res){
-                    toast("Items Added SuccessFully")
-                }else{
-                    toast("Items Added UnSuccessFully")
-                }
-            }
-
-        })
+    fun addtoCart(inputCode: String?,inputItems: Int,fullname: String){
+        disposable = productApiserve.addtoCart(inputCode!!,inputItems,fullname)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        {result->toast("Added to Cart Successfully")},
+                        {error-> toast("Error $error")}
+                )
     }
 
     fun createDialog(){
@@ -84,14 +94,35 @@ class ProductDetail : AppCompatActivity() {
         dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener({
             dialog.dismiss()
         })
-
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
             val items: Int = inputItems.text.toString().toInt()
             if(items > items2!!){
                 toast("Insufficient Items")
             }else{
-                addtoCart(code,items)
+                addtoCart(code,items,SharedPref.getmInstance(this@ProductDetail).customName!!)
             }
+        })
+    }
+
+    fun createAccountdialog(){
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_account, null)
+        val builder = AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setPositiveButton("ADD ACCOUNT",null)
+                .setNegativeButton("Cancel",null)
+        val dialog = builder.show()
+
+        dialog.show()
+
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener({
+            dialog.dismiss()
+        })
+
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener({
+                val intent = Intent(this@ProductDetail,CustomerActivity::class.java)
+                startActivity(intent)
+                dialog.dismiss()
+
         })
     }
 }

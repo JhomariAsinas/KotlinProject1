@@ -27,16 +27,16 @@ class CartAdapter(val userlist: ArrayList<Cart>, val delegate : Delegate) : Recy
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         val cart: Cart = userlist[position]
 
-        holder?.prodName2?.text   = cart.prodname
-        holder?.prodAmount2?.text = "$"+cart.prodprice+".00"
-        holder?.prodItems2?.text  = cart.proditems+" Items Order"
+        holder?.prodName2?.text   = cart.product_name
+        holder?.prodAmount2?.text = "$"+cart.product_price+".00"
+        holder?.prodItems2?.text  = cart.product_items+" Items Order"
 
         Picasso.get()
-                .load("http://192.168.43.51/e-commerce/assets/image/" + cart.prodimage)
+                .load("http://192.168.1.101/e-commerce/assets/image/" + cart.product_image)
                 .resize(450, 450)
                 .centerCrop()
                 .into(holder?.prodImage2)
-        if(cart.prodstatus.toString() == "active"){
+        if(cart.product_status.toString() == "active"){
             holder?.btntrans?.visibility  = View.INVISIBLE
             holder?.btnedit?.visibility   = View.INVISIBLE
             holder?.btndelete?.visibility = View.INVISIBLE

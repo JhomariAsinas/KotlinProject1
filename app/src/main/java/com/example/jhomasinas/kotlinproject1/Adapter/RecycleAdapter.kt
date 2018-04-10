@@ -26,11 +26,11 @@ class RecycleAdapter(val userlist: ArrayList<Product>, val delegate : Delegate) 
     }
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        val product: Product = userlist!![position]
+        val product: Product = userlist[position]
 
-        holder?.prodName?.text  = product.prodname
+        holder?.prodName?.text  = product.product_name
         Picasso.get()
-                .load("http://192.168.43.51/e-commerce/assets/image/"+product.prodimage)
+                .load("http://192.168.1.101/e-commerce/assets/image/"+product.product_image)
                 .resize(450, 450)
                 .centerCrop()
                 .into(holder?.prodImage)

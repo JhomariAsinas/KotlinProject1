@@ -19,19 +19,19 @@ class SharedPref private constructor(context: Context) {
             }
         }
 
-    val customName: String?
+    val customName: String
         get() {
             val sharedPreferences = con.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString(KEY_FULLNAME, null)
         }
 
-    val customAddress: ?
+    val customAddress: String
         get() {
             val sharedPreferences = con.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString(KEY_ADDRESS, null)
         }
 
-    val customContact: String?
+    val customContact: String
         get() {
             val sharedPreferences = con.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return sharedPreferences.getString(KEY_CONTACT, null)

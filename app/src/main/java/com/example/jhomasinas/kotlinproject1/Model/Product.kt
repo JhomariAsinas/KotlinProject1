@@ -1,28 +1,11 @@
 package com.example.jhomasinas.kotlinproject1.Model
 
-import com.google.gson.annotations.SerializedName
 
-class  Product {
 
-    @SerializedName("product_name")
-    var prodname : String? = null
-
-    @SerializedName("product_code")
-    var prodcode : String? = null
-
-    @SerializedName("product_des")
-    var prodescrip : String? = null
-
-    @SerializedName("product_price")
-    var prodprice : String? = null
-
-    @SerializedName("product_items")
-    var proditems : String? = null
-
-    @SerializedName("product_image")
-    var prodimage : String? = null
-
-    @SerializedName("product_category")
-    var prodcat : String? = null
-
-}
+ data class  Product(var product_code:     String,
+                     var product_name:     String,
+                     var product_des:      String,
+                     var product_price:    String,
+                     var product_image:    String,
+                     var product_items:    String,
+                     var product_category: String)

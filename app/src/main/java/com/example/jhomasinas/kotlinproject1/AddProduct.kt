@@ -20,6 +20,5 @@ class AddProduct : AppCompatActivity() {
         txtDes       = findViewById<View>(R.id.inputDes)  as TextInputEditText
         txtPrice     = findViewById<View>(R.id.inputPrice)  as TextInputEditText
         txtQuantity  = findViewById<View>(R.id.inputQuantity)  as TextInputEditText
-
     }
 }
